@@ -1,6 +1,8 @@
 const gulp = require('gulp');
 const babel = require('gulp-babel');
 const concat = require('gulp-concat');
+const uglify = require('gulp-uglify');
+
 
 const paths = {
 	src: {
@@ -17,5 +19,6 @@ gulp.task('default', () => {
 			presets: ['es2015']
 		}))
 		.pipe(concat('script.js'))
+		.pipe(uglify())
 		.pipe(gulp.dest(paths.dest.scripts));
 });

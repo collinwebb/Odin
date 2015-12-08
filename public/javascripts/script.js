@@ -1,7 +1,1 @@
-"use strict";
-
-//test
-var apple = "apple";
-'use strict';
-
-var moo = 'cow';
+"use strict";var apple="apple",moo="cow";
