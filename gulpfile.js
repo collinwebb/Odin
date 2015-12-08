@@ -1,15 +1,21 @@
 const gulp = require('gulp');
 const babel = require('gulp-babel');
 const concat = require('gulp-concat');
+const mocha = require('gulp-mocha');
 const uglify = require('gulp-uglify');
 const sourcemaps = require('gulp-sourcemaps');
 
 const paths = {
-	scripts: 'source/javascripts/**/*.js'
+	src: {
+		scripts: 'source/javascripts/**/*.js'
+	},
+	dest: {
+		scripts: 'public/javascripts/'
+	}
 };
 
 gulp.task('scripts', () => {
-	return gulp.src(paths.scripts)
+	return gulp.src(paths.src.scripts)
 		.pipe(sourcemaps.init())
 			.pipe(babel({
 				presets: ['es2015']
@@ -17,11 +23,17 @@ gulp.task('scripts', () => {
 			.pipe(concat('script.js'))
 			.pipe(uglify())
 		.pipe(sourcemaps.write())
-		.pipe(gulp.dest('public/javascripts/'));
+		.pipe(gulp.dest(paths.dest.scripts));
+});
+
+gulp.task('test', function () {
+	return gulp.src('tests/**/*.js', {read: false})
+		.pipe(mocha({reporter: 'nyan'}));
 });
 
 gulp.task('watch', function() {
-  gulp.watch(paths.scripts, ['scripts']);
+  gulp.watch(paths.src.scripts, ['scripts']);
+	gulp.watch(paths.dest.scripts + '/**/*.js', ['test']);
 });
 
-gulp.task('default', ['watch', 'scripts']);
+gulp.task('default', ['scripts', 'watch']);
