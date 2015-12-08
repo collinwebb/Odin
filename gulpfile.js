@@ -4,6 +4,7 @@ const concat = require('gulp-concat');
 const mocha = require('gulp-mocha');
 const uglify = require('gulp-uglify');
 const sourcemaps = require('gulp-sourcemaps');
+const del = require('del');
 
 const paths = {
 	src: {
@@ -14,7 +15,11 @@ const paths = {
 	}
 };
 
-gulp.task('scripts', () => {
+gulp.task('clean', function() {
+	return del(['public']);
+});
+
+gulp.task('scripts', ['clean'], () => {
 	return gulp.src(paths.src.scripts)
 		.pipe(sourcemaps.init())
 			.pipe(babel({
