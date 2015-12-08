@@ -28,3 +28,5 @@ node_modules
 
 # Debug log from npm
 npm-debug.log
+
+# going to ignore public in the future, but keeping it for testing.
