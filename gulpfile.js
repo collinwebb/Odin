@@ -5,16 +5,11 @@ const uglify = require('gulp-uglify');
 const sourcemaps = require('gulp-sourcemaps');
 
 const paths = {
-	src: {
-		scripts: 'source/javascripts/**/*.js'
-	},
-	dest: {
-		scripts: 'public/javascripts/'
-	}
+	scripts: 'source/javascripts/**/*.js'
 };
 
-gulp.task('default', () => {
-	return gulp.src(paths.src.scripts)
+gulp.task('scripts', () => {
+	return gulp.src(paths.scripts)
 		.pipe(sourcemaps.init())
 			.pipe(babel({
 				presets: ['es2015']
@@ -22,5 +17,11 @@ gulp.task('default', () => {
 			.pipe(concat('script.js'))
 			.pipe(uglify())
 		.pipe(sourcemaps.write())
-		.pipe(gulp.dest(paths.dest.scripts));
+		.pipe(gulp.dest('public/javascripts/'));
 });
+
+gulp.task('watch', function() {
+  gulp.watch(paths.scripts, ['scripts']);
+});
+
+gulp.task('default', ['watch', 'scripts']);
