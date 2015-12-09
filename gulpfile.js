@@ -4,6 +4,7 @@ const concat = require('gulp-concat');
 const mocha = require('gulp-mocha');
 const uglify = require('gulp-uglify');
 const sourcemaps = require('gulp-sourcemaps');
+const webpack = require('gulp-webpack');
 const del = require('del');
 
 const paths = {
@@ -22,10 +23,11 @@ gulp.task('clean', function() {
 gulp.task('scripts', ['clean'], () => {
 	return gulp.src(paths.src.scripts)
 		.pipe(sourcemaps.init())
+			.pipe(webpack())
+			.pipe(concat('script.min.js'))
 			.pipe(babel({
 				presets: ['es2015']
 			}))
-			.pipe(concat('script.min.js'))
 			.pipe(uglify())
 		.pipe(sourcemaps.write())
 		.pipe(gulp.dest(paths.dest.scripts));
