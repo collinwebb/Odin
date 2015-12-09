@@ -23,11 +23,11 @@ gulp.task('clean', function() {
 gulp.task('scripts', ['clean'], () => {
 	return gulp.src(paths.src.scripts)
 		.pipe(sourcemaps.init())
+			.pipe(babel({
+				presets: ['es2015', 'react']
+			}))
 			.pipe(webpack())
 			.pipe(concat('script.min.js'))
-			.pipe(babel({
-				presets: ['es2015']
-			}))
 			.pipe(uglify())
 		.pipe(sourcemaps.write())
 		.pipe(gulp.dest(paths.dest.scripts));
