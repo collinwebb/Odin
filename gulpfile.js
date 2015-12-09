@@ -25,7 +25,7 @@ gulp.task('scripts', ['clean'], () => {
 			.pipe(babel({
 				presets: ['es2015']
 			}))
-			.pipe(concat('script.js'))
+			.pipe(concat('script.min.js'))
 			.pipe(uglify())
 		.pipe(sourcemaps.write())
 		.pipe(gulp.dest(paths.dest.scripts));
