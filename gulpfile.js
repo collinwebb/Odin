@@ -20,17 +20,13 @@ gulp.task('clean', function() {
 	return del(['public']);
 });
 
-gulp.task('scripts', ['clean'], () => {
-	return gulp.src(paths.src.scripts)
-		.pipe(sourcemaps.init())
-			.pipe(babel({
-				presets: ['es2015', 'react']
-			}))
-			.pipe(webpack())
-			.pipe(concat('script.min.js'))
-			.pipe(uglify())
-		.pipe(sourcemaps.write())
-		.pipe(gulp.dest(paths.dest.scripts));
+gulp.task('scripts', function () {
+  return gulp.src(paths.src.scripts)
+    .pipe(sourcemaps.init())
+    .pipe(babel())
+    .pipe(concat("all.js"))
+    .pipe(sourcemaps.write("."))
+    .pipe(gulp.dest(paths.dest.scripts));
 });
 
 gulp.task('test', function () {
