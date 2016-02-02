@@ -6,27 +6,26 @@ const uglify = require('gulp-uglify');
 const sourcemaps = require('gulp-sourcemaps');
 const webpack = require('gulp-webpack');
 const del = require('del');
+const shell = require('gulp-shell');
 
-const paths = {
-	src: {
-		scripts: 'source/javascripts/**/*.js'
-	},
-	dest: {
-		scripts: 'public/javascripts/'
-	}
+const path = {
+	source: 'source/javascripts/**/*.js',
+	public: 'public/javascripts/',
+	minifiedOut: 'script.min.js'
 };
 
 gulp.task('clean', function() {
-	return del(['public']);
+	return del(['public/**']);
 });
 
 gulp.task('scripts', function () {
-  return gulp.src(paths.src.scripts)
+  return gulp.src(path.source)
     .pipe(sourcemaps.init())
     .pipe(babel())
-    .pipe(concat("script.min.js"))
+    .pipe(concat(path.minifiedOut))
+		.pipe(uglify())
     .pipe(sourcemaps.write("."))
-    .pipe(gulp.dest(paths.dest.scripts));
+    .pipe(gulp.dest(path.public));
 });
 
 gulp.task('test', function () {
@@ -35,9 +34,9 @@ gulp.task('test', function () {
 });
 
 gulp.task('watch', function() {
-	gulp.watch('gulpfile.js', ['default']);
-  gulp.watch(paths.src.scripts, ['scripts']);
-	gulp.watch(paths.dest.scripts + '/**/*.js', ['test']);
+	gulp.watch('gulpfile.js', shell.task(['gulp']));
+  gulp.watch(path.source, ['scripts']);
+	gulp.watch(path.public + '/**/*.js', ['test']);
 });
 
-gulp.task('default', ['scripts', 'watch']);
+gulp.task('default', ['clean', 'scripts', 'watch']);
