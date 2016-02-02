@@ -24,7 +24,7 @@ gulp.task('scripts', function () {
   return gulp.src(paths.src.scripts)
     .pipe(sourcemaps.init())
     .pipe(babel())
-    .pipe(concat("all.js"))
+    .pipe(concat("script.min.js"))
     .pipe(sourcemaps.write("."))
     .pipe(gulp.dest(paths.dest.scripts));
 });
@@ -35,6 +35,7 @@ gulp.task('test', function () {
 });
 
 gulp.task('watch', function() {
+	gulp.watch('gulpfile.js', ['default']);
   gulp.watch(paths.src.scripts, ['scripts']);
 	gulp.watch(paths.dest.scripts + '/**/*.js', ['test']);
 });
