@@ -1,6 +1,6 @@
 {
   "name": "Odin",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "a ReactJS template using Relay and Mocha Nyan Autotesting",
   "author": "Collin Webb <collindwebb@gmail.com",
   "private": true,

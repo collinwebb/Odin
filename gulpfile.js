@@ -14,7 +14,7 @@ const path = {
 };
 
 gulp.task('clean', function() {
-	return del(['public/**']);
+	return del(['public/javascripts']);
 });
 
 gulp.task('build', ['clean'], function(){
