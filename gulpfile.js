@@ -8,7 +8,7 @@ const source = require('vinyl-source-stream');
 const browserify = require('browserify');
 
 const path = {
-	source: 'source/javascripts/**/*.js',
+	source: 'source/javascripts/**/*.*',
 	public: 'public/javascripts/',
 	minifiedOut: 'script.min.js'
 };

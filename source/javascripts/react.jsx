@@ -1,14 +1,13 @@
 const React = require('react');
 const ReactDOM = require('react-dom');
+const Test = require('./test.jsx');
 
-var Test = React.createClass({
+var Example = React.createClass({
   render: function(){
     return (
-      <div>
-        Bloorp Test!
-      </div>
+      <Test />
     )
   }
 });
 
-ReactDOM.render(<Test />, document.getElementById('app'));
+ReactDOM.render(<Example />, document.getElementById('app'));
