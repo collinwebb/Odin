@@ -29,6 +29,8 @@ app.use(require('node-sass-middleware')({
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
+
+// graphql setup: turn graphiql option to false for production
 app.use('/graphql', graphqlHTTP({ schema: schema, graphiql: true }));
 
 
