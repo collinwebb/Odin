@@ -22,7 +22,7 @@ gulp.task('build', ['clean'], function(){
 		.transform(babel)
 		.bundle()
     .pipe(source(path.minifiedOut))
-    .pipe(streamify(uglify()))
+    // .pipe(streamify(uglify()))
     .pipe(gulp.dest(path.public));
 });
 
