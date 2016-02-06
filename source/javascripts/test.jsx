@@ -1,11 +1,12 @@
 //testing
-var React = require('react');
+const React = require('react');
+const Relay = require('react-relay');
 
 module.exports = React.createClass({
   render: function() {
     return (
       <div>
-        <p>Packaging complete ^_^</p>
+        <span>Packaging complete ^_^ {this.props.example}</span>
       </div>
     )
   }

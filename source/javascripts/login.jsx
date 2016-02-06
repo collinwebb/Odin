@@ -5,7 +5,9 @@ const passport = require('passport');
 module.exports = React.createClass({
   render: function(){
     return (
-      <>
+      <div>
+        Login
+      </div>
     );
   }
 });
