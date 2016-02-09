@@ -1,17 +1,30 @@
-var graphql = require('graphql');
-var GraphQLSchema = graphql.GraphQLSchema;
-var GraphQLObjectType = graphql.GraphQLObjectType;
-var GraphQLString = graphql.GraphQLString;
+import {
+ GraphQLSchema,
+ GraphQLObjectType,
+ GraphQLInt,
+ GraphQLString,
+ GraphQLList,
+ GraphQLNonNull,
+ GraphQLID,
+ GraphQLBoolean,
+ GraphQLFloat
+} from 'graphql';
 
-var schema = new GraphQLSchema({
-  query: new GraphQLObjectType({
-    name: 'RootQueryType',
-    fields: {
-      testing: {
-        type: GraphQLString,
-        resolve() {
-          return 'it works!!!';
+const query = new GraphQLObjectType({
+  name: 'Query',
+  description: 'First GraphQL Server Config — Yay!',
+  fields: () => ({
+    testing: {
+      type: GraphQLString,
+      description: 'just a code test',
+      args: {
+        input: {
+          type: new GraphQLNonNull(GraphQLString),
+          description: 'enter anything ^_^',
         }
+      },
+      resolve: (_,args) => {
+        return `OMG! look! an input! ==> ${args.input}!!!`;
       }
     }
   })
