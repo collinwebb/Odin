@@ -12,7 +12,7 @@ import {
 
 const query = new GraphQLObjectType({
   name: 'Query',
-  description: 'First GraphQL Server Config — Yay!',
+  description: 'example schema',
   fields: () => ({
     testing: {
       type: GraphQLString,
@@ -20,18 +20,18 @@ const query = new GraphQLObjectType({
       args: {
         input: {
           type: new GraphQLNonNull(GraphQLString),
-          description: 'enter anything ^_^',
+          description: 'test input you want to show',
         }
       },
       resolve: (_,args) => {
-        return `OMG! look! an input! ==> ${args.input}!!!`;
+        return `OMG! It's an input!! ==> ${args.input}!!!`;
       }
     }
   })
 });
 
-const schema = new GraphQLSchema({
- query
+var schema = new GraphQLSchema({
+  query
 });
 
-export default schema;
+module.exports = schema;
