@@ -11,26 +11,26 @@ import {
 } from 'graphql';
 
 const query = new GraphQLObjectType({
-  name: 'Query',
-  description: 'example schema',
+  name: 'SiteSchema',
+  description: 'example root schema',
   fields: () => ({
     testing: {
       type: GraphQLString,
       description: 'just a code test',
       args: {
         input: {
-          type: new GraphQLNonNull(GraphQLString),
+          type: GraphQLString,
           description: 'test input you want to show',
         }
       },
-      resolve: (_,args) => {
+      resolve: (root, args) => {
         return `OMG! It's an input!! ==> ${args.input}!!!`;
       }
     }
   })
 });
 
-var schema = new GraphQLSchema({
+const schema = new GraphQLSchema({
   query
 });
 
