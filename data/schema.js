@@ -1,3 +1,5 @@
+import PostsList from './posts';
+
 import {
  GraphQLSchema,
  GraphQLObjectType,
@@ -9,6 +11,21 @@ import {
  GraphQLBoolean,
  GraphQLFloat
 } from 'graphql';
+
+const post = new GraphQLObjectType({
+  name: "Post",
+  description: "This is an example blog post object",
+  fields: () => ({
+    _id: {type: new GraphQLNonNull(GraphQLString)},
+    title: {
+      type: new GraphQLNonNull(GraphQLString),
+      resolve: function(post) {
+        return post.title || "Does not exists";
+      }
+    },
+    content: {type: GraphQLString},
+  })
+});
 
 const query = new GraphQLObjectType({
   name: 'SiteSchema',
@@ -25,6 +42,12 @@ const query = new GraphQLObjectType({
       },
       resolve: (root, args) => {
         return `OMG! It's an input!! ==> ${args.input}!!!`;
+      }
+    },
+    posts: {
+      type: new GraphQLList(post),
+      resolve: function() {
+        return PostsList;
       }
     }
   })

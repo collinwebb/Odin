@@ -5,7 +5,7 @@
   "author": "Collin Webb <collindwebb@gmail.com>",
   "private": true,
   "scripts": {
-    "start": "./node_modules/.bin/babel-node --presets es2015 ./bin/www"
+    "start": "./node_modules/.bin/babel-node --presets 'es2015' ./bin/www"
   },
   "repository": {
     "type": "git",
@@ -39,6 +39,7 @@
     "express-graphql": "^0.4.9",
     "graphql": "^0.4.16",
     "jade": "~1.11.0",
+    "lodash": "^4.4.0",
     "morgan": "~1.6.1",
     "node-sass-middleware": "0.8.0",
     "passport": "^0.3.2",
